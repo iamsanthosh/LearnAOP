@@ -28,10 +28,10 @@ public class SampleAspect {
 	@Around("@annotation(com.learnaop.TrackTime)")
 	public void around(ProceedingJoinPoint joinPoint) throws Throwable {
 		long startTime = System.currentTimeMillis();
-		logger.info(" Entering Method:: {}", joinPoint);
+		logger.info(" Entering Method:: {}", joinPoint.getSignature().getName());
 
 		joinPoint.proceed();
-		logger.info(" Exiting Method:: {}", joinPoint);
+		logger.info(" Exiting Method:: {}", joinPoint.getSignature().getName());
 
 		long timeTaken = System.currentTimeMillis() - startTime;
 		logger.info(" Time Taken by {} is {}", joinPoint, timeTaken);
